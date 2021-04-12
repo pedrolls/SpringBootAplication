@@ -1,11 +1,16 @@
 package com.spring.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.spring.model.Convidado;
 import com.spring.model.Evento;
@@ -27,9 +32,14 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/cadastrarEvento", method = RequestMethod.POST)
-	public String form(Evento evento) {
+	public RedirectView form(@Valid Evento evento, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("erro", "Verifique os campos.");
+			return new RedirectView("/cadastrarEvento");
+		}
 		er.save(evento);
-		return "redirect:/cadastrarEvento";
+		attributes.addFlashAttribute("sucesso", "Evento cadastrado com sucesso!");
+		return new RedirectView("/cadastrarEvento");
 	}
 	
 	@RequestMapping(value = "/eventos", method = RequestMethod.GET)
@@ -53,10 +63,16 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/detalhesEvento/{id}", method = RequestMethod.POST)
-	public String detalheEvento(@PathVariable("id") long id, Convidado convidado) {
+	public RedirectView detalheEvento(@PathVariable("id") long id, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("erro", "Verifique os campos.");
+			attributes.addFlashAttribute("convidado",convidado);
+			return new RedirectView("/detalhesEvento/{id}");
+		}
 		Evento evento = er.findById(id);
 		convidado.setEvento(evento);
-		cr.save(convidado);		
-		return "redirect:/detalhesEvento/{id}";
+		cr.save(convidado);
+		attributes.addFlashAttribute("sucesso", "Convidado adicionado com sucesso!");
+		return new RedirectView("/detalhesEvento/{id}");
 	}
 }

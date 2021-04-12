@@ -18,6 +18,15 @@
 
 	<h1> Cadastro de Eventos </h1>
 	<h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Listar Eventos</a></h3>
+	
+	<!-- Dessa maneira não deu certo em exibir a mensagem -->
+	<!-- <th:block th:include="mensagemValidacao" > </th:block> -->
+	
+	<!-- Desta maneira as mensagens é exibida. -->
+	<div class="alert alert-danger ef9a9a red lighten-3 container" style="text-align:center" role="alert" th:text="${erro}" th:if="${erro}"></div>
+		
+	<div class="alert alert-primary 69f0ae green accent-2 container" style="text-align:center" role="alert" th:text="${sucesso}" th:if="${sucesso}"></div>
+	
 	<form class="container" method="post" >
 		<div class="row">
 			Nome: <input type="text" value="" name="nome"/>

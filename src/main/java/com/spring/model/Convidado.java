@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+import com.sun.istack.NotNull;
 
 @Entity
 public class Convidado implements Serializable{
@@ -15,7 +18,11 @@ public class Convidado implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@NotNull
+	@NotEmpty(message = "Não pode ser vazio")
 	private String rg;
+	@NotNull
+	@NotEmpty(message = "Não pode ser vazio")
 	private String nomeConvidado;
 	
 	@ManyToOne

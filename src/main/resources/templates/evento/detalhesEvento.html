@@ -23,6 +23,14 @@
 			<p>Data: <span th:text="${evento.data}"></span></p>
 			<p>Horario: <span th:text="${evento.horario}"></span></p>
 		</div>
+		<!-- Desta Forma não deu certo.  -->
+		<!-- <th:block th:include="mensagemValidacao" > </th:block> -->
+		
+		<!-- Desta forma a mensagem é exibida -->
+		<div class="alert alert-danger ef9a9a red lighten-3" style="text-align:center" role="alert" th:text="${erro}" th:if="${erro}"></div>
+		
+		<div class="alert alert-primary 69f0ae green accent-2" role="alert" th:text="${sucesso}" th:if="${sucesso}"></div>
+		
 		<form method="post">
 			Nome do convidado: <input type="text" value="" name="nomeConvidado"/>
 			RG do convidado: <input type="number" value="" name="rg"/>
@@ -34,6 +42,7 @@
 	<h5 class="container">Lista de Participantes</h5>
 	<div class="container" th:each="convidado : ${convidados}">
 		<div class="row">
+			
 			<div class="input-field col s6">
 				<p>Nome: <span th:text="${convidado.nomeConvidado}"></span></p>
 			</div>
