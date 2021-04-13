@@ -11,14 +11,22 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- Estilo personalizado  -->
+      <link rel="stylesheet" href="../style/styles.css">
 	<title>Eventos App</title>
 </head>
 
 <body>
-
-	<h1> Cadastro de Eventos </h1>
-	<h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Listar Eventos</a></h3>
-	
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Cadastrar Evento</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Listar Eventos</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
 	<!-- Dessa maneira não deu certo em exibir a mensagem -->
 	<!-- <th:block th:include="mensagemValidacao" > </th:block> -->
 	
@@ -26,22 +34,23 @@
 	<div class="alert alert-danger ef9a9a red lighten-3 container" style="text-align:center" role="alert" th:text="${erro}" th:if="${erro}"></div>
 		
 	<div class="alert alert-primary 69f0ae green accent-2 container" style="text-align:center" role="alert" th:text="${sucesso}" th:if="${sucesso}"></div>
-	
-	<form class="container" method="post" >
-		<div class="row">
-			Nome: <input type="text" value="" name="nome"/>
-			<div class="input-field col s6">
-				Local: <input type="text" value="" name="local"/>
+	<div class="container formEvento"> 
+		<form class="container" method="post" >
+			<div class="row">
+				Nome: <input type="text" value="" name="nome"/>
+				<div class="input-field col s6">
+					Local: <input type="text" value="" name="local"/>
+				</div>
+				<div class="input-field col s3">
+					Data: <input type="date" value="" name="data"/>
+				</div>
+				<div class="input-field col s3">
+					Horario: <input type="time" value="" name="horario"/>
+				</div>
 			</div>
-			<div class="input-field col s3">
-				Data: <input type="date" value="" name="data"/>
-			</div>
-			<div class="input-field col s3">
-				Horario: <input type="text" value="" name="horario"/>
-			</div>
-		</div>
-		<button class="waves-effect waves-light btn" type="submit" >Salvar</button>
-	</form>
+			<button class="waves-effect waves-light btn" type="submit" >Salvar</button>
+		</form>
+	</div>
 	<!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
