@@ -10,4 +10,6 @@ import com.spring.model.Evento;
 public interface IConvidadoRepository extends CrudRepository<Convidado, String>{
 
 	Iterable<Convidado> findByEvento(Evento evento);
+	
+	Convidado findByRg(String rg);
 }

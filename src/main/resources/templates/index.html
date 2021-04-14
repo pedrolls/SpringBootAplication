@@ -33,6 +33,7 @@
 				<th>Local</th>
 				<th>Data</th>
 				<th>Horario</th>
+				<th>Deletar</th> 
 			</tr>
 		</thead>
 		<tbody>
@@ -40,7 +41,9 @@
 				<td><a th:href="@{detalhesEvento/{id}(id = ${evento.id})}"><span th:text="${evento.nome}"></span></a></td>
 				<td><span th:text="${evento.local}"></span></td>
 				<td><span th:text="${evento.data}"></span></td>
-				<td><span th:text="${evento.horario}"></span></td>
+				<td><span th:text="${evento.horario}"></span></td>	
+				<td><a th:href="@{deletarEvento/{id}(id = ${evento.id})}"><i class="material-icons left">delete</i></a></td>
+				
 			</tr>
 		</tbody>
 	</table>

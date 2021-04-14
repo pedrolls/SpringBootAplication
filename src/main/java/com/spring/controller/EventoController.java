@@ -75,4 +75,20 @@ public class EventoController {
 		attributes.addFlashAttribute("sucesso", "Convidado adicionado com sucesso!");
 		return new RedirectView("/detalhesEvento/{id}");
 	}
+	
+	@RequestMapping(value = "/deletarEvento/{id}", method = RequestMethod.GET)
+	public RedirectView deletarEvento(@PathVariable("id") long id) {
+		Evento evento = er.findById(id);
+		er.delete(evento);
+		return new RedirectView("/eventos");
+	}
+	
+	@RequestMapping(value = "/deletarConvidado/{rg}", method = RequestMethod.GET)
+	public RedirectView deletarConvidado(@PathVariable("rg") String rg) {
+		Convidado convidado = cr.findByRg(rg);
+		cr.delete(convidado);
+		String id = convidado.getEvento().getId().toString();
+		
+		return new RedirectView("/detalhesEvento/{"+id+"}");
+	}
 }

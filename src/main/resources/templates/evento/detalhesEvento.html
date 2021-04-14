@@ -43,7 +43,7 @@
 		<div class="alert alert-danger ef9a9a red lighten-3" style="text-align:center" role="alert" th:text="${erro}" th:if="${erro}"></div>
 		<div class="alert alert-primary 69f0ae green accent-2" role="alert" th:text="${sucesso}" th:if="${sucesso}"></div> 
 		
-		<form method="post" th:object="${convidado}">
+		<form method="post" >
 			Nome do convidado: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"/>
 			RG do convidado: <input type="number" value="" name="rg" placeholder="999999"/>
 			
@@ -55,17 +55,19 @@
 	<table class="container tabelaConvidado">
 		<thead>
 			<tr> 
-				<th colspan="2" style="text-align:center"> Lista de Convidados </th>
+				<th colspan="3" style="text-align:center"> Lista de Convidados </th>
 			</tr>
 			<tr>				
 				<th>Nome do Convidado</th>
 				<th>RG</th>
+				<th>Deletar</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="convidado : ${convidados}">
 				<td><span th:text="${convidado.nomeConvidado}"> </span></td>
 				<td><span th:text="${convidado.rg}"> </span></td>
+				<td><a th:href="@{deletarConvidado/{rg}(rg = ${convidado.rg})}"><i class="material-icons left">delete</i></a></td>
 			</tr>
 		</tbody>
 	</table>
