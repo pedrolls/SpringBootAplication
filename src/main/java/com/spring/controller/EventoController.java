@@ -83,12 +83,11 @@ public class EventoController {
 		return new RedirectView("/eventos");
 	}
 	
-	@RequestMapping(value = "/deletarConvidado/{rg}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{rg}")
 	public RedirectView deletarConvidado(@PathVariable("rg") String rg) {
 		Convidado convidado = cr.findByRg(rg);
 		cr.delete(convidado);
-		String id = convidado.getEvento().getId().toString();
 		
-		return new RedirectView("/detalhesEvento/{"+id+"}");
+		return new RedirectView("/detalhesEvento/"+convidado.getEvento().getId());
 	}
 }
